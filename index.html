@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暗号メーカー</title>
+    <meta name="description" content="テキストをさまざまな暗号方式で暗号化・復号するツール。シーザー暗号、モールス信号、Base64など14種類対応。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+    <div class="app" id="app">
+        <!-- ヘッダー -->
+        <header class="header" id="header">
+            <div class="header-left">
+                <span class="logo">🔐</span>
+                <h1 class="app-title">暗号メーカー</h1>
+            </div>
+            <nav class="header-nav">
+                <button class="nav-btn active" data-page="convert" id="nav-convert">変換</button>
+                <button class="nav-btn" data-page="list" id="nav-list">一覧</button>
+                <button class="nav-btn" data-page="favorites" id="nav-favorites">お気に入り</button>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="テーマ切替">🌙</button>
+        </header>
+
+        <!-- 変換画面 -->
+        <main class="page active" id="page-convert">
+            <div class="convert-layout">
+                <!-- 暗号方式選択 -->
+                <div class="cipher-selector" id="cipher-selector">
+                    <label class="form-label">暗号方式</label>
+                    <div class="cipher-grid" id="cipher-grid"></div>
+                </div>
+
+                <!-- 方向切替 -->
+                <div class="direction-toggle">
+                    <button class="dir-btn active" data-dir="encrypt" id="btn-encrypt">🔒 暗号化</button>
+                    <button class="dir-btn" data-dir="decrypt" id="btn-decrypt">🔓 復号</button>
+                </div>
+
+                <!-- パラメータ設定 -->
+                <div class="params-area" id="params-area"></div>
+
+                <!-- 入力 -->
+                <div class="input-area">
+                    <label class="form-label">入力テキスト</label>
+                    <textarea class="text-input" id="input-text" placeholder="暗号化したいテキストを入力..." rows="4"></textarea>
+                </div>
+
+                <!-- 出力 -->
+                <div class="output-area">
+                    <div class="output-header">
+                        <label class="form-label">変換結果</label>
+                        <div class="output-actions">
+                            <button class="action-btn" id="btn-morse-play" style="display:none" title="モールス信号を再生">🔊 再生</button>
+                            <button class="action-btn" id="btn-copy" title="コピー">📋 コピー</button>
+                            <button class="action-btn" id="btn-favorite" title="お気に入りに保存">⭐ 保存</button>
+                        </div>
+                    </div>
+                    <div class="text-output" id="output-text"></div>
+                </div>
+
+                <!-- 解説パネル -->
+                <details class="info-panel" id="info-panel">
+                    <summary class="info-toggle">📖 この暗号について</summary>
+                    <div class="info-content" id="info-content"></div>
+                </details>
+            </div>
+        </main>
+
+        <!-- 一覧画面 -->
+        <div class="page" id="page-list">
+            <div class="list-header">
+                <h2 class="page-title">暗号方式一覧</h2>
+                <div class="category-tabs" id="category-tabs">
+                    <button class="cat-tab active" data-cat="all">すべて</button>
+                    <button class="cat-tab" data-cat="classic">古典暗号</button>
+                    <button class="cat-tab" data-cat="code">符号・エンコード</button>
+                    <button class="cat-tab" data-cat="modern">現代暗号</button>
+                </div>
+            </div>
+            <div class="cipher-cards" id="cipher-cards"></div>
+        </div>
+
+        <!-- お気に入り画面 -->
+        <div class="page" id="page-favorites">
+            <h2 class="page-title">お気に入り</h2>
+            <div class="favorites-list" id="favorites-list"></div>
+            <div class="empty-state" id="favorites-empty">
+                <span class="empty-icon">⭐</span>
+                <p>保存したお気に入りはまだありません</p>
+                <p class="empty-hint">変換結果の「⭐ 保存」ボタンでお気に入りに追加できます</p>
+            </div>
+        </div>
+
+        <!-- モールス速度スライダー -->
+        <div class="morse-controls" id="morse-controls" style="display:none">
+            <label>再生速度</label>
+            <input type="range" id="morse-speed" min="0.5" max="2" step="0.1" value="1">
+            <span id="morse-speed-label">1.0x</span>
+            <button class="action-btn" id="btn-morse-stop">⏹ 停止</button>
+        </div>
+
+        <!-- トースト -->
+        <div class="toast" id="toast"></div>
+    </div>
+
+    <script src="ciphers.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
