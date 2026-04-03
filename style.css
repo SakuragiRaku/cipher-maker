@@ -6,58 +6,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap');
 
 :root {
-    --bg-primary: #050510;
-    --bg-secondary: #0a0a1a;
-    --bg-card: #0f0f25;
-    --bg-input: #0d0d20;
-    --bg-hover: #15153a;
-    --text-primary: #e0e8ff;
-    --text-secondary: #7888bb;
-    --text-muted: #4a5580;
-    --accent: #00ffcc;
-    --accent-light: #66ffd9;
-    --accent-dark: #00cc99;
-    --accent-glow: rgba(0, 255, 204, 0.25);
-    --neon-pink: #ff00aa;
-    --neon-pink-glow: rgba(255, 0, 170, 0.3);
-    --neon-blue: #00aaff;
-    --neon-blue-glow: rgba(0, 170, 255, 0.3);
-    --neon-yellow: #ffee00;
-    --success: #00ffcc;
-    --warning: #ffee00;
-    --danger: #ff3366;
-    --border: rgba(0, 255, 204, 0.12);
-    --border-focus: rgba(0, 255, 204, 0.5);
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
-    --radius-xl: 16px;
-    --shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
-    --shadow-glow: 0 0 20px rgba(0, 255, 204, 0.15);
-    --transition: 0.2s ease;
-    --font-main: 'Orbitron', 'Inter', sans-serif;
-    --font-mono: 'Share Tech Mono', 'JetBrains Mono', monospace;
-    --scanline: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 255, 204, 0.02) 2px,
-        rgba(0, 255, 204, 0.02) 4px
-    );
+  --bg-primary:#f8f9fb;--bg-secondary:#fff;--bg-tertiary:#f0f2f5;--text-primary:#1a1d23;--text-secondary:#5f6577;--text-tertiary:#9098a9;--border-color:#e2e5eb;
+  --accent:#00ffcc;--accent-hover:#00cc99;--accent-light:#66ffd9;--accent-dark:#00cc99;--success:#00ffcc;--warning:#ffee00;--danger:#ff3366;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.05);--shadow-md:0 4px 12px rgba(0,0,0,.08);--shadow-lg:0 8px 32px rgba(0,0,0,.12);
+  --radius-sm:4px;--radius-md:8px;--radius-lg:12px;--radius-xl:16px;--transition:0.2s ease;
+  
+  --font-main: 'Orbitron', 'Inter', sans-serif;
+  --font-mono: 'Share Tech Mono', 'JetBrains Mono', monospace;
+  
+  --bg-card:var(--bg-secondary);--bg-input:var(--bg-tertiary);--bg-hover:var(--bg-tertiary);
+  --text-muted:var(--text-tertiary);--border:var(--border-color);
+  --border-focus: rgba(0, 255, 204, 0.5);
+  --shadow:var(--shadow-md);
+  
+  --accent-glow: rgba(0, 255, 204, 0.25);
+  --neon-pink: #ff00aa;
+  --neon-pink-glow: rgba(255, 0, 170, 0.3);
+  --neon-blue: #00aaff;
+  --neon-blue-glow: rgba(0, 170, 255, 0.3);
+  --shadow-glow: 0 0 20px rgba(0, 255, 204, 0.15);
+  --scanline: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 204, 0.02) 2px, rgba(0, 255, 204, 0.02) 4px);
 }
-
-[data-theme="light"] {
-    --bg-primary: #0a0a18;
-    --bg-secondary: #0e0e22;
-    --bg-card: #12122c;
-    --bg-input: #0f0f28;
-    --bg-hover: #1a1a40;
-    --text-primary: #e0e8ff;
-    --text-secondary: #7888bb;
-    --text-muted: #4a5580;
-    --border: rgba(0, 255, 204, 0.12);
-    --shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-    --shadow-glow: 0 0 20px rgba(0, 255, 204, 0.15);
+[data-theme="dark"] {
+  --bg-primary:#0f1117;--bg-secondary:#1a1d27;--bg-tertiary:#252833;--text-primary:#e8eaf0;--text-secondary:#9098a9;--text-tertiary:#5f6577;--border-color:#2e3240;
+  --shadow:var(--shadow-md);
+  --shadow-glow: 0 0 20px rgba(0, 255, 204, 0.15);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -97,18 +70,9 @@ body::after {
 }
 
 /* ---- Header ---- */
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 20px;
-    background: linear-gradient(180deg, rgba(0, 255, 204, 0.08) 0%, var(--bg-secondary) 100%);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(20px);
-}
+.app-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+.app-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); position: relative; }
+.app-header::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), var(--neon-pink), var(--accent), transparent); animation: headerGlow 3s linear infinite; }
 
 .header::after {
     content: '';
